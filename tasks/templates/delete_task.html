@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block doctitle %}
+<title>Delete Task</title>
+{% endblock %}
+<body>
+    {% block heading %}
+    <h1>Delete Task</h1>
+    {% endblock %}
+
+    {% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            Confirm Delete <b>{{object.name}}</b> ?
+        </p>
+        <input type="submit">
+    </form>
+    {% endblock %}
+</body>

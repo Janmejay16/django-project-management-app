@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+    {% block doctitle %}
+    <title>{{data.first_name | title}} {{data.last_name | title}}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block heading %}
+    {% endblock %}
+
+    {% block content %}
+
+    <div class="rounded shadow-lg card col-xs-12 col-md-8 mx-auto">
+        <div class="card-body py-5">
+            <div class="row w-100">
+                <div class="mx-auto col-3 mb-3">
+                    <img class="rounded-circle card-img" alt="fallback" src="{% static 'images/profilepic.png' %}" >
+                </div>
+            </div>
+            <div class="mt-5 d-flex justify-content-center">
+                <div class="col p-0 justify-content-center align-items-center">
+                    <!-- <div class="row "> -->
+                        <div class="row p-3 justify-content-between">
+                            <div class="col p-0 mr-3">
+                                <p class="shadow-sm border rounded p-0"><span style="display: inline-block; width: 100% !important;" class="text-center  m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">First Name: </span><span style="display: inline-block; width: 100% !important;" class="text-center py-1">{{data.first_name | title }}</span></p>
+                                <p class="shadow-sm border rounded p-0"><span style="display: inline-block; width: 100% !important;" class="text-center  m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">Last Name: </span><span style="display: inline-block; width: 100% !important;" class="text-center py-1">{{data.last_name | title }}</span></p>
+                                <p class="shadow-sm border rounded p-0"><span style="display: inline-block; width: 100% !important;" class="text-center  m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">Email: </span><span style="display: inline-block; width: 100% !important;" class="text-center py-1">{{data.email}}</span></p>
+                                <p class="shadow-sm border rounded p-0"><span style="display: inline-block; width: 100% !important;" class="text-center  m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">Role: </span><span style="display: inline-block; width: 100% !important;" class="text-center py-1">{{data.role | upper }}</span></p>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+                <div class="col mt-2">
+                    <div class="col">
+                        {% if data.enrolled_projects.all %}
+                            <h4>Projects Enrolled:</h4>
+                            <ul class="list-group">
+                                {% for project in data.enrolled_projects.all %}
+                                <li class="list-group-item list-group-item-action"><a href={% url 'projects:project' project.id %} >{{ project.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        {% if data.my_projects.all %}
+                            <h4>Projects Managed:</h4>
+                            <ul class="list-group">
+                                {% for project in data.my_projects.all %}
+                                <li class="list-group-item list-group-item-action"><a href={% url 'projects:project' project.id %} >{{ project.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>

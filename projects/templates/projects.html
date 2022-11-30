@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block doctitle %}
+<title>Projects</title>
+{% endblock %}
+<body>
+    {% block heading %}
+    {% endblock %}
+
+    {% block content %}
+    <div class="row"><h1>Projects</h1></div>
+    <div class="row"><table class="text-left table table-hover shadow-sm border">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Budget</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Managers</th>
+                <th>Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if data.projects %}
+                {% for project in data.projects %}
+                <tr>
+                    <th><a href={% url 'projects:project' project.id %}>{{project.name}}</a></th>
+                    <th>{{project.budget}}</th>
+                    <th>{{project.start_date}}</th>
+                    <th>{{project.end_date}}</th>
+                    <th>{{project.managers.all | length}}</th>
+                    <th>{{project.members.all | length}}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table></div>
+    {% endblock %}
+</body>

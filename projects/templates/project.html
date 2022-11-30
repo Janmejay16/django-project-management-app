@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+    {% block doctitle %}
+    <title>{{data.project.name | title}}</title>
+    {% endblock %}
+</head>
+<body>
+    {% block heading %}
+    {% endblock %}
+
+    {% block content %}
+
+    <div style="width: 80% !important; height: 70vh; overflow-y: auto;" class="box rounded shadow-sm card mx-auto">
+        <div class="card-body">
+            <div style="width: 80% !important;" class="mx-auto row p-0 justify-content-center align-items-center">
+                <div class="col" style="width: 250px !important;">
+                    {% if data.project.logo %}
+                    <img style="max-width: 250px !important; object-fit: cover; object-position: center;" class="card-img" src="{{data.project.logo}}"/>
+                    {% else %}
+                    <img style="max-width: 250px !important; object-fit: cover; object-position: center;" class="card-img" alt="fallback" src="{% static 'images/logo.png' %}" >
+                    {% endif %}
+                </div>
+                <div class="col w-100 text-left">
+                    <h4 class="d-flex justify-content-between shadow-sm border rounded p-0 mb-4">
+                        <p class="w-100 m-0 p-1 px-2 text-center" style="background: #efefef;">{{data.project.name}}</p>
+                        {% if data.edit %}
+                        <a style="width: 20% !important;" class="d-flex justify-content-center align-items-center" href={% url 'projects:edit' data.project.id %}><i style="color: #aaa !important;" class="fa fa-pencil-square-o"></i></a>
+                        {% endif %}
+                    </h4>
+                    <p class="w-100 shadow-sm d-flex justify-content-between align-items-center border rounded p-0 h-100"><span style="display: inline-block;" class="w-50 text-center h-100 m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">Budget: </span><span style="height: 100% !important; display: inline-block; width: 45% !important;" class="text-center h-100 w-50">{{data.project.budget}}</span></p>
+                    <p class="w-100 shadow-sm d-flex justify-content-between align-items-center border rounded p-0 h-100"><span style="display: inline-block;" class="w-50 text-center h-100 m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">Start Date: </span><span style="height: 100% !important; display: inline-block; width: 45% !important;" class="text-center h-100 w-50">{{data.project.start_date}}</span></p>
+                    <p class="w-100 shadow-sm d-flex justify-content-between align-items-center border rounded p-0 h-100"><span style="display: inline-block;" class="w-50 text-center h-100 m-0 p-0 mr-2 font-weight-light bg-dark text-light p-1 pl-0">End Date: </span><span style="display: inline-block; width: 45% !important;" class="text-center h-100 w-50">{{data.project.end_date}}</span></p>
+                </div>
+            </div>
+            <div style="width: 80% !important;" class="mx-auto row mt-5">
+                <div class="col">
+                    {% if data.project.members.all %}
+                    <h4>Members</h4>
+                    {% else %}
+                    <h4>No Members!</h4>
+                    {% endif %}
+                    <ul class="list-group">
+                        {% for member in data.project.members.all %}
+                        <li class="list-group-item list-group-item-action p-1 my-1"><a href={% url 'profiles:user' member.id %} >{{ member.first_name | title }} {{ member.last_name | title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col">
+                    {% if data.project.managers.all %}
+                    <h4>Managers</h4>
+                    {% else %}
+                    <h4>No Managers!</h4>
+                    {% endif %}
+                    <ul class="list-group">
+                        {% for manager in data.project.managers.all %}
+                        <li class="list-group-item list-group-item-action  p-1 my-1"><a href={% url 'profiles:user' manager.id %} >{{ manager.first_name | title }} {{ manager.last_name | title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col">
+                    {% if data.project.tasks.all %}
+                    <h4>Tasks</h4>
+                    {% else %}
+                    <h4>No Tasks!</h4>
+                    {% endif %}
+                    <ul class="list-group">
+                        {% for task in datsa.project.tasks.all %}
+                        <li class="list-group-item list-group-item-action p-1 my-1"><a href={% url 'tasks:task' task.id %} >{{ task.name | title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>

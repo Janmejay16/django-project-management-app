@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block doctitle %}
+<title>Delete User</title>
+{% endblock %}
+<body>
+    {% block heading %}
+    <h1>Delete User</h1>
+    {% endblock %}
+
+    {% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            Confirm Delete <b>{{object.email}}</b> ?
+        </p>
+        <input type="submit">
+    </form>
+    {% endblock %}
+</body>

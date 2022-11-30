@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block doctitle %}
+<title>Create Project</title>
+{% endblock %}
+<body>
+            {% block heading %}
+            {% endblock %}
+
+            {% block content %}
+            <form method="POST">
+                <h1>Add Project</h1>
+                {% csrf_token %}
+
+                {{form.as_div}}
+
+                <!-- {% for i in form %}
+                <div class="form-group">
+                    <label>{{ i.label }}</label>
+                    {{ i }}
+                </div>
+                {% endfor %} -->
+
+                <input type="submit" name="Register" />
+            </form>
+            {% endblock %}
+      </body>

@@ -1,0 +1,82 @@
+*::-webkit-scrollbar {
+    width: 5px;
+    background: #efefef;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+}
+html {
+    height: 100vh !important;
+    width: 100vw !important;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+main {
+    width: 90% !important;
+    margin: 0 auto;
+    max-height: 75vh;
+    min-height: 60vh;
+}
+
+form {
+    text-align: left !important;
+    max-width: 700px !important;
+    margin: 30px auto !important;
+    padding: 20px 40px !important;
+    overflow-y: auto !important;
+}
+
+input[type='checkbox'] {
+    width: 15px !important;
+    height: 15px !important;
+    margin-right: 10px;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+
+label {
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav {
+    position: absolute !important;
+    top: 0 !important;
+    width: 100%;
+    left: 0;
+}
+
+nav ul {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-evenly !important;
+}
+
+table {
+    margin-top: 50px !important;
+}
+
+a {
+    text-decoration: none !important;
+}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block doctitle %}
+<title>Register</title>
+{% endblock %}
+<body>
+    {% block heading %}
+    <h1>Register</h1>
+    {% endblock %}
+
+    {% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_div}}
+        <input type="submit">
+    </form>
+    {% endblock %}
+</body>

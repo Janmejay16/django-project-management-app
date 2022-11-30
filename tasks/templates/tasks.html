@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block doctitle %}
+<title>Tasks</title>
+{% endblock %}
+<body>
+    {% block heading %}
+    {% endblock %}
+
+    {% block content %}
+    <div class="row"><h1>Tasks</h1></div>
+    <div class="row"><table class="text-left table table-hover shadow-sm border">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>Finish Time</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if data.tasks %}
+                {% for task in data.tasks %}
+                <tr>
+                    <th><a href={% url 'tasks:task' task.id %}>{{task.name}}</a></th>
+                    <th>{{task.start_time}}</th>
+                    <th>{{task.finish_time}}</th>
+                    <th>{{task.assigned_to.all | length}}</th>
+                    <th>{{task.status }}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table></div>
+    {% endblock %}
+</body>
